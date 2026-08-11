@@ -4,7 +4,9 @@ import { SESSION_COOKIE_NAME, verifySessionToken } from '@/lib/auth-edge';
 const PROTECTED_PAGE_PREFIXES = ['/menu'];
 const PROTECTED_API_PREFIXES = [
   '/api/add-item',
+  '/api/confirm-reservation',
   '/api/delete-item',
+  '/api/delete-reservation',
   '/api/manage-items',
   '/api/process-prices',
   '/api/upload-prices'
@@ -35,5 +37,14 @@ export async function proxy(request) {
 }
 
 export const config = {
-  matcher: ['/menu/:path*', '/api/add-item/:path*', '/api/delete-item/:path*', '/api/manage-items/:path*', '/api/process-prices/:path*', '/api/upload-prices/:path*']
+  matcher: [
+    '/menu/:path*',
+    '/api/add-item/:path*',
+    '/api/confirm-reservation/:path*',
+    '/api/delete-item/:path*',
+    '/api/delete-reservation/:path*',
+    '/api/manage-items/:path*',
+    '/api/process-prices/:path*',
+    '/api/upload-prices/:path*'
+  ]
 };

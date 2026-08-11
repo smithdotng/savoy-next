@@ -11,7 +11,7 @@ export default function AdminMenuDashboard({ categories }) {
 
   return (
     <>
-      <h1>Update Menu Prices</h1>
+      <h1>Update Menu</h1>
       <PriceUpdateForm categories={categories} />
 
       <AddItemForm categories={categories} onItemAdded={(category) => manageItemsRef.current?.refresh(category)} />

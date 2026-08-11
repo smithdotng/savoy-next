@@ -12,7 +12,8 @@ export default async function LoginPage({ searchParams }) {
     redirect('/menu');
   }
 
-  const hasError = searchParams?.error === '1';
+  const resolvedSearchParams = await searchParams;
+  const hasError = resolvedSearchParams?.error === '1';
 
   return (
     <div className="admin-page">

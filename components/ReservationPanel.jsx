@@ -19,7 +19,9 @@ export default function ReservationPanel() {
           aria-expanded={open}
           aria-controls="reservation-panel-body"
         >
-          <i className="fa fa-calendar" /> Make a Reservation{' '}
+          <span>
+            <i className="fa fa-calendar" /> Make a Reservation
+          </span>
           <i className={`fa ${open ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
         </button>
 

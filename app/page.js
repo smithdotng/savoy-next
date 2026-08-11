@@ -11,16 +11,29 @@ export default async function HomePage() {
   const menuData = await getMenuData();
 
   return (
-    <>
+    <div className="public-page">
       <header className="site-header">
-        <div className="container">
-          <img
-            src="/images/logo-header.png"
-            alt="Savoy Summerset Logo"
-            style={{ width: 150, marginBottom: 20 }}
-          />
-          <h1>Savoy Summerset</h1>
-          <p>Experience the finest culinary delights from around the world in an elegant atmosphere</p>
+        <div className="site-topbar">
+          <div className="container site-topbar-inner">
+            <span>
+              <i className="fa fa-map-marker" /> 43 Isaac John St, Ikeja GRA
+            </span>
+            <span>
+              <i className="fa fa-phone" /> +234 (0) 201-295-4999
+            </span>
+            <span>
+              <i className="fa fa-envelope" /> reservations@savoysummerset.com
+            </span>
+          </div>
+        </div>
+
+        <div className="site-header-hero">
+          <div className="container">
+            <img src="/images/logo-header.png" alt="Savoy Summerset Logo" className="site-logo" />
+            <h1>Savoy Summerset</h1>
+            <div className="site-divider" />
+            <p>Experience the finest culinary delights from around the world in an elegant atmosphere</p>
+          </div>
         </div>
       </header>
 
@@ -57,6 +70,6 @@ export default async function HomePage() {
       </footer>
 
       <InstallPrompt />
-    </>
+    </div>
   );
 }

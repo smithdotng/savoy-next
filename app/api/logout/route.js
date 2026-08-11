@@ -2,6 +2,6 @@ import { NextResponse } from 'next/server';
 import { clearSessionCookie } from '@/lib/session';
 
 export async function GET(request) {
-  clearSessionCookie();
+  await clearSessionCookie();
   return NextResponse.redirect(new URL('/login', request.url));
 }

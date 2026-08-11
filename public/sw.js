@@ -1,6 +1,6 @@
 // Minimal service worker: just enough offline support + caching to satisfy
 // PWA installability, without trying to cache admin/API traffic.
-const CACHE_NAME = 'savoy-menu-v2';
+const CACHE_NAME = 'savoy-menu-v3';
 const OFFLINE_URL = '/';
 
 const PRECACHE_ASSETS = [
@@ -31,9 +31,16 @@ self.addEventListener('fetch', (event) => {
 
   // Never intercept API calls, admin routes, or non-GET requests -
   // those always need a live network round-trip.
+  //
+  // /_next/ is excluded too: in dev those chunk URLs are NOT content-hashed,
+  // so a cache-first strategy would pin the first version forever and serve
+  // stale JS after every code change (causing hydration mismatches and
+  // missing UI). In production Next.js hashes the filenames and sets
+  // immutable cache headers, so the browser HTTP cache already covers them.
   if (
     request.method !== 'GET' ||
     request.url.includes('/api/') ||
+    request.url.includes('/_next/') ||
     request.url.includes('/menu') ||
     request.url.includes('/login')
   ) {
