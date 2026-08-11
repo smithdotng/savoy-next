@@ -27,6 +27,26 @@ SMTP_FROM=
 
 Reservation requests won't send until these are set. Any SMTP provider works (Gmail with an App Password, Zoho, Office365, etc.) - host/port/user/password is all `lib/mailer.js` needs.
 
+### Passwords containing `#` or `$`
+
+`.env` files are not plain text - `#` starts a comment and `$NAME` is expanded as a
+variable. A password like `aB#cdefg$hijk` written unquoted silently becomes just `aB`,
+which shows up as a confusing `535 authentication failed` from the mail server.
+
+Wrap the value in single quotes **and** escape every `$` with `\$`:
+
+```
+SMTP_PASS='aB#cdefg\$hijk'
+```
+
+Quoting alone is not enough - the `$` still expands. To check what actually got loaded:
+
+```bash
+node -e "require('@next/env').loadEnvConfig(process.cwd());console.log(process.env.SMTP_PASS.length)"
+```
+
+If the length doesn't match your real password, it's still being truncated.
+
 ## Run
 
 ```bash
